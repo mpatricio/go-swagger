@@ -504,6 +504,9 @@ func (b *codeGenOpBuilder) MakeOperation() (GenOperation, error) {
 		WithContext:          b.WithContext,
 		TimeoutName:          timeoutName,
 		Extensions:           operation.Extensions,
+		Imports: map[string]string{
+			"common_models": "github.com/sidewalklabs/parking/common/models",
+		},
 	}, nil
 }
 
