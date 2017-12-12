@@ -12,11 +12,11 @@
 - [Dynamic Server](tutorial/dynamic.md)
 
 - Generate
-  
+
   - [API Client](generate/client.md)
   - [API Server](generate/server.md)
     - [Usage](use/server.md)
-  - [Model generation rules](use/schemas.md)  
+  - [Model generation rules](use/schemas.md)
   - [swagger.json](generate/spec.md)
     - [swagger:meta](generate/spec/meta.md)
     - [swagger:route](generate/spec/route.md)
@@ -29,5 +29,5 @@
     - [swagger:discriminated](generate/spec/discriminated.md)
   - [Custom generation](use/template_layout.md)
     - [Custom templates](generate/templates.md)
-  
-- [FAQ](https://github.com/go-swagger/go-swagger/issues?q=is%3Aissue+label%3Aquestion)
+
+- [FAQ](https://github.com/sidewalklabs/go-swagger/issues?q=is%3Aissue+label%3Aquestion)

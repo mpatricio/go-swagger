@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/go-swagger/go-swagger/generator"
+	"github.com/sidewalklabs/go-swagger/generator"
 )
 
 // Server the command to generate an entire server application
