@@ -85,7 +85,6 @@ package {{ .Package }}
 
 import (
   "io"
-  "encoding/json"
   "net/http"
 
   "github.com/go-openapi/runtime"
@@ -101,11 +100,6 @@ import (
   {{ range $key, $value := .Imports }}{{ $key }} {{ printf "%q" $value }}
   {{ end }}
 )
-
-func prettyPrint(v interface{}) string {
-  b, _ := json.Marshal(v)
-  return string(b)
-}
 
 // {{ pascalize .Name }}Reader is a Reader for the {{ pascalize .Name }} structure.
 type {{ pascalize .Name }}Reader struct {
