@@ -25,6 +25,13 @@ import (
   {{ end }}
 )
 
+// prettyPrint is a helper function that returns a struct in readable string format. It's used for
+// printing error messages out in server responses.
+func prettyPrint(v interface{}) string {
+  b, _ := json.Marshal(v)
+  return string(b)
+}
+
 // New creates a new {{ humanize .Name }} API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
   return &Client{transport: transport, formats: formats}
@@ -79,11 +86,4 @@ func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
   a.transport = transport
-}
-
-// prettyPrint is a helper function that returns a struct in readable string format. It's used for
-// printing error messages out in server responses.
-func prettyPrint(v interface{}) string {
-  b, _ := json.Marshal(v)
-  return string(b)
 }
