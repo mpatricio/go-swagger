@@ -32,7 +32,7 @@ func ({{ .ReceiverName }} *{{ pascalize .Name }}) Code() int {
 
 
 func ({{ .ReceiverName }} *{{ pascalize .Name }}) Error() string {
-	return fmt.Sprintf("[{{ upper .Method }} {{ .Path }}][%d] {{ if .Name }}{{ .Name }} {{ else }}unknown error {{ end }}{{ if .Schema }} %+v{{ end }}", {{ if eq .Code -1 }}{{ .ReceiverName }}._statusCode{{ else }}{{ .Code }}{{ end }}{{ if .Schema }}, {{ (prettyPrint o.Payload) }} {{ end }})
+	return fmt.Sprintf("[{{ upper .Method }} {{ .Path }}][%d] {{ if .Name }}{{ .Name }} {{ else }}unknown error {{ end }}{{ if .Schema }} %+v{{ end }}", {{ if eq .Code -1 }}{{ .ReceiverName }}._statusCode{{ else }}{{ .Code }}{{ end }}{{ if .Schema }}, {{ (prettyPrint $o.Payload) }} {{ end }})
 }
 
 
