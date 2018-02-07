@@ -26,13 +26,6 @@ import (
   {{ end }}
 )
 
-// prettyPrint is a helper function that returns a struct in readable string format. It's used for
-// printing error messages out in server responses.
-func prettyPrint(v interface{}) string {
-  b, _ := json.Marshal(v)
-  return strings.Replace(string(b), "\"", "'", -1)
-}
-
 // New creates a new {{ humanize .Name }} API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
   return &Client{transport: transport, formats: formats}
