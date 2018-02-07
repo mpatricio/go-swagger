@@ -12,6 +12,7 @@ package {{ .Name }}
 import (
   "encoding/json"
   "net/http"
+  "strings"
   "github.com/go-openapi/errors"
   "github.com/go-openapi/swag"
   "github.com/go-openapi/runtime"
@@ -29,7 +30,7 @@ import (
 // printing error messages out in server responses.
 func prettyPrint(v interface{}) string {
   b, _ := json.Marshal(v)
-  return string(b)
+  return strings.Replace(string(b), "\"", "'", -1)
 }
 
 // New creates a new {{ humanize .Name }} API client.
