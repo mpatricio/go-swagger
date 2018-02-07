@@ -32,7 +32,7 @@ func ({{ .ReceiverName }} *{{ pascalize .Name }}) Code() int {
 
 
 func ({{ .ReceiverName }} *{{ pascalize .Name }}) Error() string {
-	return fmt.Sprintf("[{{ upper .Method }} {{ .Path }}][%d] {{ if .Name }}{{ .Name }} {{ else }}unknown error {{ end }}{{ if .Schema }} %+v{{ end }}", {{ if eq .Code -1 }}{{ .ReceiverName }}._statusCode{{ else }}{{ .Code }}{{ end }}{{ if .Schema }}, o.Payload{{ end }})
+	return fmt.Sprintf("[{{ upper .Method }} {{ .Path }}][%d] {{ if .Name }}{{ .Name }} {{ else }}unknown error {{ end }}{{ if .Schema }} %+v{{ end }}", {{ if eq .Code -1 }}{{ .ReceiverName }}._statusCode{{ else }}{{ .Code }}{{ end }}{{ if .Schema }}, prettyPrint(o.Payload) {{ end }})
 }
 
 
@@ -66,6 +66,7 @@ func ({{ .ReceiverName }} *{{ pascalize .Name }}) readResponse(response runtime.
   {{ end }}{{ if not .Schema.IsBaseType }}
   // response payload
   if err := consumer.Consume(response.Body(), {{ if not (or .Schema.IsComplexObject .Schema.IsStream) }}&{{ end}}{{ .ReceiverName }}.Payload); err != nil && err != io.EOF {
+    fmt.Println("ARE YOU EVEN GETTING THIS")
     return err
   }
   {{ end }}{{ end }}

@@ -99,6 +99,10 @@ var FuncMap template.FuncMap = map[string]interface{}{
 	"mediaTypeName": func(orig string) string {
 		return strings.SplitN(orig, ";", 2)[0]
 	},
+	"prettyPrint": func(v interface{}) string {
+		b, _ := json.Marshal(v)
+		return strings.Replace(string(b), "\"", "'", -1)
+	},
 }
 
 func init() {
