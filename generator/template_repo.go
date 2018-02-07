@@ -99,6 +99,10 @@ var FuncMap template.FuncMap = map[string]interface{}{
 	"mediaTypeName": func(orig string) string {
 		return strings.SplitN(orig, ";", 2)[0]
 	},
+	"prettyPrint": func(v interface{}) {
+		b, _ := json.Marshal(v)
+		return strings.Replace(string(b), "\"", "'", -1)
+	},
 }
 
 func init() {
@@ -245,12 +249,9 @@ func (t *Repository) LoadDir(templatePath string) error {
 
 	err := filepath.Walk(templatePath, func(path string, info os.FileInfo, err error) error {
 
-		fmt.Println("LOADING DIRECTORY")
 		if strings.HasSuffix(path, ".gotmpl") {
-			fmt.Println("PATH", path)
 			if assetName, e := filepath.Rel(templatePath, path); e == nil {
 				if data, e := ioutil.ReadFile(path); e == nil {
-					fmt.Println("DATA STUFF", string(data))
 					if ee := t.AddFile(assetName, string(data)); ee != nil {
 						log.Fatal(ee)
 					}
